@@ -6,13 +6,13 @@
   vars:
     vim_dir: "{{ ansible_env.HOME }}/.vim"
     vimrc: "{{ ansible_env.HOME }}/.vimrc"
+    coc_ext_dir: "{{ ansible_env.HOME }}/.config/coc/extensions"
   tasks:
     - name: Install required packages
       apt:
         name:
           - vim
           - git
-          - nodejs
 
     - name: Ensure .vim/{autoload,bundle} directory exists
       file:
@@ -38,16 +38,22 @@
         update: yes
         recursive: no
       loop:
-      - name: Vim-lightline
+      - name: vim-lightline
         url: https://github.com/itchyny/lightline.vim
-      - name: Nerdtree
+      - name: nerdtree
         url: https://github.com/preservim/nerdtree
-      - name: Polyglot
+      - name: vim-polyglot
         url: https://github.com/sheerun/vim-polyglot
-      - name: Gruvbox
+      - name: gruvbox
         url: https://github.com/morhetz/gruvbox
-      - name: Coc
-        url: https://github.com/neoclide/coc.nvim
+      - name: vim-surround
+        url: https://github.com/tpope/vim-surround
+      - name: vim-commentary
+        url: https://github.com/tpope/vim-commentary
+      - name: emmet
+        url: https://github.com/mattn/emmet-vim
+      - name: prettier
+        url: https://github.com/prettier/vim-prettier
 
     - name: Ensure .vimrc config in place
       copy:
@@ -55,7 +61,3 @@
         dest: "{{ vimrc }}"
         backup: yes
         mode: 0640
-    - name: Install coc Plugins
-      command: |
-        vim + 'CocInstall -sync coc-json coc-yaml coc-prettier' + qall
-        vim + CocUpdateSync + qall

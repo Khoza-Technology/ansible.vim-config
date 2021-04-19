@@ -6,8 +6,6 @@ execute pathogen#infect()
 " ============================================
 syntax on " set syntax to on so it colors different files
 filetype plugin indent on
-"Get the 2-space YAML as the default when hit carriage return after the colon
-autocmd FileType yaml, yml setlocal ts=2 sts=2 sw=2 expandtab
 colorscheme gruvbox " obviously its the colorscheme of vim
 set shiftwidth=2 " the > command is equal to two spacs
 set tabstop=2 " set the tab char to 2 spaces
