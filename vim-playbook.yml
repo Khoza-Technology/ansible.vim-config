@@ -1,0 +1,61 @@
+---
+- name: Config Vim with plugins
+  hosts: localhost
+  gather_facts: yes
+  become: no
+  vars:
+    vim_dir: "{{ ansible_env.HOME }}/.vim"
+    vimrc: "{{ ansible_env.HOME }}/.vimrc"
+  tasks:
+    - name: Install required packages
+      apt:
+        name:
+          - vim
+          - git
+          - nodejs
+
+    - name: Ensure .vim/{autoload,bundle} directory exists
+      file:
+        path: "{{ item }}"
+        state: directory
+        recurse: no
+        mode: 0750
+      loop:
+        - "{{ vim_dir }}"
+        - "{{ vim_dir }}/autoload"
+        - "{{ vim_dir }}/bundle"
+
+    - name: Ensure Pathogen is in place
+      get_url:
+        dest: "{{ vim_dir }}/autoload/pathogen.vim"
+        url: https://tpo.pe/pathogen.vim
+
+    - name: Deploy plugins
+      git:
+        dest: "{{ vim_dir }}/bundle/{{ item.name }}"
+        repo: "{{ item.url }}"
+        clone: yes
+        update: yes
+        recursive: no
+      loop:
+      - name: Vim-lightline
+        url: https://github.com/itchyny/lightline.vim
+      - name: Nerdtree
+        url: https://github.com/preservim/nerdtree
+      - name: Polyglot
+        url: https://github.com/sheerun/vim-polyglot
+      - name: Gruvbox
+        url: https://github.com/morhetz/gruvbox
+      - name: Coc
+        url: https://github.com/neoclide/coc.nvim
+
+    - name: Ensure .vimrc config in place
+      copy:
+        src: vimrc
+        dest: "{{ vimrc }}"
+        backup: yes
+        mode: 0640
+    - name: Install coc Plugins
+      command: |
+        vim + 'CocInstall -sync coc-json coc-yaml coc-prettier' + qall
+        vim + CocUpdateSync + qall
