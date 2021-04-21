@@ -1,0 +1,56 @@
+" instantiate the plugins
+execute pathogen#infect()
+
+" ============================================
+"             General Settings
+" ============================================
+syntax on " set syntax to on so it colors different files
+filetype plugin indent on
+colorscheme gruvbox " obviously its the colorscheme of vim
+set shiftwidth=2 " the > command is equal to two spacs
+set tabstop=2 " set the tab char to 2 spaces
+set background=dark " make the background dark
+set laststatus=2 " sets the status line for vim needs to be here for lightline to work
+set incsearch " highlights search results as search is typed
+set hlsearch " highlights search results when search is entered
+set expandtab " converts tabs to spaces
+set autoindent " indents to current position
+set fileformat=unix " sets the file format
+set encoding=utf-8 "sets the encoding
+set number relativenumber "sets the line number and relativenumber shows the number of the lines relative to the current position
+set splitbelow splitright " set the splitwindow to be right when the split window is opened
+
+" ============================================
+"              Vim Key Mappings
+" ============================================
+" replace all
+nnoremap S : %s//g<Left><Left>
+" beggining of line
+nnoremap B ^
+" end of line
+nnoremap E $
+" escape
+inoremap jk <esc>
+" copy/paste from clipboard (if one exists)
+" note, does not work in ssh
+map <space>p "+p
+nmap <space>y "+yy
+vmap <space>y "+y
+" open file explorer
+nmap <C-g> :NERDTreeToggle<CR>
+" easier commands to navigate a split screen
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-h> <C-w>h
+map <C-l> <C-w>l
+
+" ============================================
+"               Plugin Settings
+" ============================================
+let g:gruvbox_contrast_dark='hard' " color scheme contrast
+
+" sets color scheme of the lightline plugin
+let g:lightline = {
+  \'colorscheme': 'gruvbox',
+\}
+
