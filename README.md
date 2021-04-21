@@ -17,21 +17,22 @@ ctrl j, k, l h navigates split windows
 
 ## Included Plugins
 
-vim-lightline: a status bar at the bottom of the window
-nerdtree: a file explorer opened with either :NERDTreeToggle or ctrl g
-vim-polyglot: a syntax highlighter for many languages
-gruvbox: a simple colorscheme
-vim-surround: a gamechanger plugin that makes for dealing with '"(){} and many other characters much easier
-vim-commentary: a plugin to visually select a block of code and hit `gc` which will comment the selection
+- vim-lightline: a status bar at the bottom of the window
+- nerdtree: a file explorer opened with either :NERDTreeToggle or ctrl g
+- vim-polyglot: a syntax highlighter for many languages
+- gruvbox: a simple colorscheme
+- vim-surround: a gamechanger plugin that makes for dealing with '"(){} and many other characters much easier
+- vim-commentary: a plugin to visually select a block of code and hit `gc` which will comment the selection
 
 ### Plugins For Development
 if the dev.yml file is run, this extension will be installed
 
-emmet: a plugin to make writing html quick and simple, to get started type in insert mode div>a>li>em>strong.strong and then ctrl y + ,
+- emmet: a plugin to make writing html quick and simple, to get started type in insert mode div>a>li>em>strong.strong and then ctrl y + ,
 
 ### Plugins For Dev-Ops
 
-vim-terraform: a plugin by hashicorp that does syntax highlighting and code validation
+- vim-terraform: a plugin by hashicorp that does syntax highlighting and code validation
+- 
 NOTE: this plugin requires that the terraform binary is in the system $PATH variable
 
 ### Note worthy plugin
